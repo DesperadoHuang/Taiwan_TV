@@ -15,6 +15,9 @@ public class Channel {
         this.category = category;
     }
 
+    public Channel() {
+    }
+
     public String getName() {
         return name;
     }
