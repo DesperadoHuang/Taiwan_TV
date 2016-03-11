@@ -1,5 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="header_background">#260000</color>
-    <color name="search_opaque">#ef7a74</color>
+    <color name="header_background">#280004</color>
+    <color name="search_opaque">#CCC9A1</color>
+    <color name="default_background">#280004</color>
+    <color name="selected_background">#A53F2B</color>
 </resources>

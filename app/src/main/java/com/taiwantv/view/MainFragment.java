@@ -18,6 +18,10 @@ import android.util.Log;
 import android.view.View;
 
 import com.taiwantv.R;
+import com.taiwantv.model.Channel;
+import com.taiwantv.model.ChannelList;
+
+import java.util.List;
 
 public class MainFragment extends BrowseFragment {
     private static final String TAG = "MianFragment";
@@ -70,8 +74,10 @@ public class MainFragment extends BrowseFragment {
         setOnItemViewClickedListener(new ItemViewClickedListener());
         setOnItemViewSelectedListener(new ItemViewSelectedListener());
 
-
-
+        ///////////
+        //init row
+        //////////
+        List<Channel> channelList = ChannelList.setupChannels();
 
         setAdapter(mCategroyRowAdapter);
 
