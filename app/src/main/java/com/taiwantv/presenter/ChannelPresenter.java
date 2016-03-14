@@ -48,6 +48,7 @@ public class ChannelPresenter extends Presenter {
         ImageCardView imageCardView = (ImageCardView) viewHolder.view;
         imageCardView.setTitleText(channel.getName());
         imageCardView.setMainImageDimensions(MAIN_IMAGE_WIDTH, MAIN_IMAGE_HEIGHT);
+        imageCardView.setMainImage(mDefaultCardImage);
         imageCardView.setBadgeImage(mDefaultCardBage);
     }
 

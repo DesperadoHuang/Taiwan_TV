@@ -20,6 +20,7 @@ import android.view.View;
 import com.taiwantv.R;
 import com.taiwantv.model.Channel;
 import com.taiwantv.model.ChannelList;
+import com.taiwantv.presenter.ChannelPresenter;
 
 import java.util.List;
 
@@ -78,6 +79,10 @@ public class MainFragment extends BrowseFragment {
         //init row
         //////////
         List<Channel> channelList = ChannelList.setupChannels();
+
+        ChannelPresenter channelPresenter=new ChannelPresenter();
+
+        ArrayObjectAdapter
 
         setAdapter(mCategroyRowAdapter);
 
