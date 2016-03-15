@@ -1,4 +1,4 @@
-package com.taiwantv.view;
+package com.taiwantv.view.main;
 
 
 import android.content.Context;
@@ -16,8 +16,6 @@ import android.support.v17.leanback.widget.Presenter;
 import android.support.v17.leanback.widget.Row;
 import android.support.v17.leanback.widget.RowPresenter;
 import android.util.DisplayMetrics;
-import android.util.Log;
-import android.view.View;
 
 import com.taiwantv.R;
 import com.taiwantv.model.Channel;
@@ -68,12 +66,12 @@ public class MainFragment extends BrowseFragment {
         /////////////////////////
         //setup event listenters
         /////////////////////////
-        setOnSearchClickedListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Log.i(TAG, "clicked search");
-            }
-        });
+        //        setOnSearchClickedListener(new View.OnClickListener() {
+        //            @Override
+        //            public void onClick(View v) {
+        //                Log.i(TAG, "clicked search");
+        //            }
+        //        });
         setOnItemViewClickedListener(new ItemViewClickedListener());
         setOnItemViewSelectedListener(new ItemViewSelectedListener());
 
@@ -89,7 +87,7 @@ public class MainFragment extends BrowseFragment {
         for (int i = 0; i < channelList.size(); i++) {
             listRowAdapter.add(channelList.get(i));
         }
-        HeaderItem headerItem = new HeaderItem(0, ChannelList.CATEGORY_LIST[0]);
+        HeaderItem headerItem = new HeaderItem(0, ChannelList.CHANNEL_CATEGORY_LIST[0]);
         mCategroyRowAdapter.add(new ListRow(headerItem, listRowAdapter));
 
         setAdapter(mCategroyRowAdapter);

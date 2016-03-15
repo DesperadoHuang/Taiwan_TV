@@ -1,5 +1,6 @@
 package com.taiwantv.presenter;
 
+import android.content.Context;
 import android.graphics.drawable.Drawable;
 import android.support.v17.leanback.widget.ImageCardView;
 import android.support.v17.leanback.widget.Presenter;
@@ -14,8 +15,8 @@ import com.taiwantv.model.Channel;
 public class ChannelPresenter extends Presenter {
     private static int sSelectedBackgroundColor;//取得焦點的顏色
     private static int sDefaultBackgroundColor;//預設的顏色(未取得焦點)
-    private static final int MAIN_IMAGE_WIDTH = 313;
-    private static final int MAIN_IMAGE_HEIGHT = 176;
+    private static final int MAIN_IMAGE_WIDTH = 300;
+    private static final int MAIN_IMAGE_HEIGHT = 220;
     private Drawable mDefaultCardImage;
     private Drawable mDefaultCardBage;
 
@@ -23,8 +24,8 @@ public class ChannelPresenter extends Presenter {
     public ViewHolder onCreateViewHolder(ViewGroup parent) {
         sSelectedBackgroundColor = parent.getResources().getColor(R.color.selected_background);
         sDefaultBackgroundColor = parent.getResources().getColor(R.color.default_background);
-        mDefaultCardImage = parent.getResources().getDrawable(R.drawable.default_card_image);
-        mDefaultCardBage = parent.getResources().getDrawable(R.drawable.image_card_view_bage);
+        mDefaultCardImage = parent.getResources().getDrawable(R.drawable.cloud_error);
+        mDefaultCardBage = parent.getResources().getDrawable(R.drawable.live_badge);
         ImageCardView imageCardView = new ImageCardView(parent.getContext()) {
             @Override
             public void setSelected(boolean selected) {
@@ -45,10 +46,18 @@ public class ChannelPresenter extends Presenter {
     @Override
     public void onBindViewHolder(ViewHolder viewHolder, Object item) {
         Channel channel = (Channel) item;
-        ImageCardView imageCardView = (ImageCardView) viewHolder.view;
+        Context context = viewHolder.view.getContext();
+
+        final ImageCardView imageCardView = (ImageCardView) viewHolder.view;
         imageCardView.setTitleText(channel.getName());
         imageCardView.setMainImageDimensions(MAIN_IMAGE_WIDTH, MAIN_IMAGE_HEIGHT);
-        imageCardView.setMainImage(mDefaultCardImage);
+        imageCardView.setMainImage(context.getDrawable(channel.getCardImageId()),true);
+        //        Glide.with(context)
+        //                .load(channel.getCardImageUrl())
+        //                .centerCrop()
+        //                .error(mDefaultCardImage)
+        //                .into(imageCardView.getMainImageView());
+
         imageCardView.setBadgeImage(mDefaultCardBage);
     }
 

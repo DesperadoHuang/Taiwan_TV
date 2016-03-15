@@ -1,4 +1,4 @@
-package com.taiwantv.view;
+package com.taiwantv.view.main;
 
 import android.app.Activity;
 import android.os.Bundle;
