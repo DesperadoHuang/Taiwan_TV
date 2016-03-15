@@ -9,7 +9,7 @@ import java.util.List;
  */
 public class ChannelList {
     private static List<Channel> channelList;
-    private static final String[] CATEGORY_LIST = {
+    public static final String[] CATEGORY_LIST = {
             "新聞台"
     };
 

@@ -7,6 +7,8 @@ import android.os.Bundle;
 import android.support.v17.leanback.app.BackgroundManager;
 import android.support.v17.leanback.app.BrowseFragment;
 import android.support.v17.leanback.widget.ArrayObjectAdapter;
+import android.support.v17.leanback.widget.HeaderItem;
+import android.support.v17.leanback.widget.ListRow;
 import android.support.v17.leanback.widget.ListRowPresenter;
 import android.support.v17.leanback.widget.OnItemViewClickedListener;
 import android.support.v17.leanback.widget.OnItemViewSelectedListener;
@@ -35,7 +37,7 @@ public class MainFragment extends BrowseFragment {
     public void onAttach(Context context) {
         super.onAttach(context);
 
-        mCategroyRowAdapter = new ArrayObjectAdapter(new ListRowPresenter());
+
     }
 
     @Override
@@ -80,9 +82,15 @@ public class MainFragment extends BrowseFragment {
         //////////
         List<Channel> channelList = ChannelList.setupChannels();
 
-        ChannelPresenter channelPresenter=new ChannelPresenter();
+        mCategroyRowAdapter = new ArrayObjectAdapter(new ListRowPresenter());
+        ChannelPresenter channelPresenter = new ChannelPresenter();
 
-        ArrayObjectAdapter
+        ArrayObjectAdapter listRowAdapter = new ArrayObjectAdapter(channelPresenter);
+        for (int i = 0; i < channelList.size(); i++) {
+            listRowAdapter.add(channelList.get(i));
+        }
+        HeaderItem headerItem = new HeaderItem(0, ChannelList.CATEGORY_LIST[0]);
+        mCategroyRowAdapter.add(new ListRow(headerItem, listRowAdapter));
 
         setAdapter(mCategroyRowAdapter);
 

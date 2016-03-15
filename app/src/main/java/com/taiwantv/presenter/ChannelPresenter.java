@@ -39,7 +39,7 @@ public class ChannelPresenter extends Presenter {
 
         //預設卡片的顏色為未取得焦點的顏色(未被選中)
         updateCardBackgroundColor(imageCardView, false);
-        return null;
+        return new ViewHolder(imageCardView);
     }
 
     @Override
