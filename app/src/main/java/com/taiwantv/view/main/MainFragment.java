@@ -18,6 +18,7 @@ import android.support.v17.leanback.widget.RowPresenter;
 import android.util.DisplayMetrics;
 
 import com.taiwantv.R;
+import com.taiwantv.data.VideoDAO;
 import com.taiwantv.model.Channel;
 import com.taiwantv.model.ChannelList;
 import com.taiwantv.presenter.ChannelPresenter;
@@ -80,6 +81,11 @@ public class MainFragment extends BrowseFragment {
         //////////
         List<Channel> channelList = ChannelList.setupChannels();
 
+        VideoDAO videoDAO = new VideoDAO(getActivity());
+        for (int i = 0; i < channelList.size(); i++) {
+            videoDAO.insert(channelList.get(i));
+        }
+
         mCategroyRowAdapter = new ArrayObjectAdapter(new ListRowPresenter());
         ChannelPresenter channelPresenter = new ChannelPresenter();
 
@@ -89,6 +95,8 @@ public class MainFragment extends BrowseFragment {
         }
         HeaderItem headerItem = new HeaderItem(0, ChannelList.CHANNEL_CATEGORY_LIST[0]);
         mCategroyRowAdapter.add(new ListRow(headerItem, listRowAdapter));
+
+
 
         setAdapter(mCategroyRowAdapter);
 

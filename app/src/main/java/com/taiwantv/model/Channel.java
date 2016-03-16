@@ -8,34 +8,17 @@ public class Channel {
     private String videoUrl;
     private String category;
     private String cardImageUrl;
-    private int cardImageId;
+    private String bgImageUrl;
 
-
-    public Channel(String name, String videoUrl, String category, String cardImageUrl, int cardImageId) {
+    public Channel(String name, String videoUrl, String category, String cardImageUrl, String bgImageUrl) {
         this.name = name;
         this.videoUrl = videoUrl;
         this.category = category;
         this.cardImageUrl = cardImageUrl;
-        this.cardImageId = cardImageId;
+        this.bgImageUrl = bgImageUrl;
     }
 
     public Channel() {
-    }
-
-    public int getCardImageId() {
-        return cardImageId;
-    }
-
-    public void setCardImageId(int cardImageId) {
-        this.cardImageId = cardImageId;
-    }
-
-    public String getCardImageUrl() {
-        return cardImageUrl;
-    }
-
-    public void setCardImageUrl(String cardImageUrl) {
-        this.cardImageUrl = cardImageUrl;
     }
 
     public String getName() {
@@ -60,5 +43,21 @@ public class Channel {
 
     public void setCategory(String category) {
         this.category = category;
+    }
+
+    public String getCardImageUrl() {
+        return cardImageUrl;
+    }
+
+    public void setCardImageUrl(String cardImageUrl) {
+        this.cardImageUrl = cardImageUrl;
+    }
+
+    public String getBgImageUrl() {
+        return bgImageUrl;
+    }
+
+    public void setBgImageUrl(String bgImageUrl) {
+        this.bgImageUrl = bgImageUrl;
     }
 }
