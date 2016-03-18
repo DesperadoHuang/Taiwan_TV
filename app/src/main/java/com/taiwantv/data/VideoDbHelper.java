@@ -21,7 +21,8 @@ public class VideoDbHelper extends SQLiteOpenHelper {
                     VideoEntry.COLUMN_VIDEO_URL + " TEXT," +
                     VideoEntry.COLUMN_VIDEO_CATEGORY + " TEXT," +
                     VideoEntry.COLUMN_BG_IMAGE_URL + " TEXT," +
-                    VideoEntry.COLUMN_CARD_IMAGE_URL + " TEXT" +
+                    VideoEntry.COLUMN_CARD_IMAGE_URL + " TEXT," +
+                    VideoEntry.COLUMN_STUDIO + " TEXT" +
                     " );";
 
     private static final String SQL_DROP_TABLE = "DROP TABLE IF EXISTS " + VideoEntry.TABLE_NAME;
@@ -57,5 +58,6 @@ public class VideoDbHelper extends SQLiteOpenHelper {
         public static final String COLUMN_VIDEO_CATEGORY = "video_category";
         public static final String COLUMN_BG_IMAGE_URL = "bg_image_url";
         public static final String COLUMN_CARD_IMAGE_URL = "card_image_url";
+        public static final String COLUMN_STUDIO = "video_studio";
     }
 }

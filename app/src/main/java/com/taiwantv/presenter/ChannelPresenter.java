@@ -51,11 +51,12 @@ public class ChannelPresenter extends Presenter {
 
         final ImageCardView imageCardView = (ImageCardView) viewHolder.view;
         imageCardView.setTitleText(channel.getName());
+        imageCardView.setContentText(channel.getStudio());
         imageCardView.setMainImageDimensions(MAIN_IMAGE_WIDTH, MAIN_IMAGE_HEIGHT);
 
         Glide.with(context)
                 .load(channel.getCardImageUrl())
-                .centerCrop()
+                .fitCenter()
                 .into(imageCardView.getMainImageView());
 
         imageCardView.setBadgeImage(mDefaultCardBage);

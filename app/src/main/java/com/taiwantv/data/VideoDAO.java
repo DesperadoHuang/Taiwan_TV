@@ -24,6 +24,7 @@ public class VideoDAO {
         cv.put(VideoDbHelper.VideoEntry.COLUMN_VIDEO_URL, channel.getVideoUrl());
         cv.put(VideoDbHelper.VideoEntry.COLUMN_CARD_IMAGE_URL, channel.getCardImageUrl());
         cv.put(VideoDbHelper.VideoEntry.COLUMN_BG_IMAGE_URL, channel.getBgImageUrl());
+        cv.put(VideoDbHelper.VideoEntry.COLUMN_STUDIO, channel.getStudio());
         db.insert(VideoDbHelper.VideoEntry.TABLE_NAME, null, cv);
     }
 }

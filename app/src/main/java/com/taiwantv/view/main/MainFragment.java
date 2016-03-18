@@ -4,6 +4,7 @@ package com.taiwantv.view.main;
 import android.content.Context;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
+import android.os.Handler;
 import android.support.v17.leanback.app.BackgroundManager;
 import android.support.v17.leanback.app.BrowseFragment;
 import android.support.v17.leanback.widget.ArrayObjectAdapter;
@@ -17,20 +18,30 @@ import android.support.v17.leanback.widget.Row;
 import android.support.v17.leanback.widget.RowPresenter;
 import android.util.DisplayMetrics;
 
+import com.bumptech.glide.Glide;
+import com.bumptech.glide.load.resource.drawable.GlideDrawable;
+import com.bumptech.glide.request.animation.GlideAnimation;
+import com.bumptech.glide.request.target.SimpleTarget;
 import com.taiwantv.R;
 import com.taiwantv.data.VideoDAO;
 import com.taiwantv.model.Channel;
 import com.taiwantv.model.ChannelList;
 import com.taiwantv.presenter.ChannelPresenter;
 
+import java.net.URI;
 import java.util.List;
+import java.util.Timer;
+import java.util.TimerTask;
 
 public class MainFragment extends BrowseFragment {
     private static final String TAG = "MianFragment";
     private BackgroundManager backgroundManager;
     private ArrayObjectAdapter mCategroyRowAdapter;//主畫面左邊分類欄位的Adapter
     private Drawable mDeufaultBackground;//預設背景
+    private URI mBackgroundUri;
+    private Timer mBackgroundTimer;
     private DisplayMetrics mDisplayMetrics;
+    private final Handler handler = new Handler();
 
     @Override
     public void onAttach(Context context) {
@@ -97,7 +108,6 @@ public class MainFragment extends BrowseFragment {
         mCategroyRowAdapter.add(new ListRow(headerItem, listRowAdapter));
 
 
-
         setAdapter(mCategroyRowAdapter);
 
     }
@@ -122,7 +132,49 @@ public class MainFragment extends BrowseFragment {
     private class ItemViewSelectedListener implements OnItemViewSelectedListener {
         @Override
         public void onItemSelected(Presenter.ViewHolder itemViewHolder, Object item, RowPresenter.ViewHolder rowViewHolder, Row row) {
-
+            if (item instanceof Channel) {
+                mBackgroundUri = ((Channel) item).getBgImageURI();
+                startBackgroundTimerTask();
+            }
         }
+    }
+
+    private void startBackgroundTimerTask() {
+        if (mBackgroundTimer != null) {
+            mBackgroundTimer.cancel();
+        }
+        mBackgroundTimer = new Timer();
+        mBackgroundTimer.schedule(new UpdateBackgroundTask(), 1000);
+    }
+
+
+    private class UpdateBackgroundTask extends TimerTask {
+        @Override
+        public void run() {
+            handler.post(new Runnable() {
+                @Override
+                public void run() {
+                    if (mBackgroundUri != null) {
+                        updateBackground(mBackgroundUri.toString());
+                    }
+                }
+            });
+        }
+    }
+
+    private void updateBackground(String url) {
+        int width = mDisplayMetrics.widthPixels;
+        int height = mDisplayMetrics.heightPixels;
+        Glide.with(getActivity())
+                .load(url)
+                .fitCenter()
+                .into(new SimpleTarget<GlideDrawable>(width, height) {
+                    @Override
+                    public void onResourceReady(GlideDrawable resource,
+                                                GlideAnimation<? super GlideDrawable> glideAnimation) {
+                        backgroundManager.setDrawable(resource);
+                    }
+                });
+        mBackgroundTimer.cancel();
     }
 }

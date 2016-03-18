@@ -1,5 +1,8 @@
 package com.taiwantv.model;
 
+import java.net.URI;
+import java.net.URISyntaxException;
+
 /**
  * Created by WilsonHuang-PC on 2016/3/8.
  */
@@ -9,16 +12,26 @@ public class Channel {
     private String category;
     private String cardImageUrl;
     private String bgImageUrl;
+    private String studio;
 
-    public Channel(String name, String videoUrl, String category, String cardImageUrl, String bgImageUrl) {
+    public Channel(String name, String videoUrl, String category, String cardImageUrl, String bgImageUrl, String studio) {
         this.name = name;
         this.videoUrl = videoUrl;
         this.category = category;
         this.cardImageUrl = cardImageUrl;
         this.bgImageUrl = bgImageUrl;
+        this.studio = studio;
     }
 
     public Channel() {
+    }
+
+    public String getStudio() {
+        return studio;
+    }
+
+    public void setStudio(String studio) {
+        this.studio = studio;
     }
 
     public String getName() {
@@ -59,5 +72,23 @@ public class Channel {
 
     public void setBgImageUrl(String bgImageUrl) {
         this.bgImageUrl = bgImageUrl;
+    }
+
+    public URI getBgImageURI() {
+        try {
+            return new URI(getBgImageUrl());
+        } catch (URISyntaxException e) {
+            e.printStackTrace();
+            return null;
+        }
+    }
+
+    public URI getCardImageURI() {
+        try {
+            return new URI(getCardImageUrl());
+        } catch (URISyntaxException e) {
+            e.printStackTrace();
+            return null;
+        }
     }
 }
