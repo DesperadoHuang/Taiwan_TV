@@ -2,6 +2,7 @@ package com.taiwantv.view.main;
 
 
 import android.content.Context;
+import android.content.Intent;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.os.Handler;
@@ -23,17 +24,21 @@ import com.bumptech.glide.load.resource.drawable.GlideDrawable;
 import com.bumptech.glide.request.animation.GlideAnimation;
 import com.bumptech.glide.request.target.SimpleTarget;
 import com.taiwantv.R;
+import com.taiwantv.Tools;
 import com.taiwantv.data.VideoDAO;
 import com.taiwantv.model.Channel;
 import com.taiwantv.model.ChannelList;
 import com.taiwantv.presenter.ChannelPresenter;
+import com.taiwantv.view.playback.PlaybackOverlayActivity;
 
 import java.net.URI;
 import java.util.List;
 import java.util.Timer;
 import java.util.TimerTask;
 
+
 public class MainFragment extends BrowseFragment {
+    private static final String LOG_TAG = "Wilson";
     private static final String TAG = "MianFragment";
     private BackgroundManager backgroundManager;
     private ArrayObjectAdapter mCategroyRowAdapter;//主畫面左邊分類欄位的Adapter
@@ -41,6 +46,7 @@ public class MainFragment extends BrowseFragment {
     private URI mBackgroundUri;
     private Timer mBackgroundTimer;
     private DisplayMetrics mDisplayMetrics;
+    private Channel mSelectedChannel;
     private final Handler handler = new Handler();
 
     @Override
@@ -59,6 +65,8 @@ public class MainFragment extends BrowseFragment {
         ////////////////////////////
         backgroundManager = BackgroundManager.getInstance(getActivity());
         backgroundManager.attach(getActivity().getWindow());
+        mDeufaultBackground = getActivity().getResources().getDrawable(R.drawable.default_bg_image);
+        backgroundManager.setDrawable(mDeufaultBackground);
         mDisplayMetrics = new DisplayMetrics();
         getActivity().getWindowManager().getDefaultDisplay().getMetrics(mDisplayMetrics);
 
@@ -78,7 +86,7 @@ public class MainFragment extends BrowseFragment {
         /////////////////////////
         //setup event listenters
         /////////////////////////
-        //        setOnSearchClickedListener(new View.OnClickListener() {
+        //        setOnSearchClickedListener(new View.OnClickListener() {//設定並啟用搜尋按鈕的監聽事件
         //            @Override
         //            public void onClick(View v) {
         //                Log.i(TAG, "clicked search");
@@ -109,7 +117,6 @@ public class MainFragment extends BrowseFragment {
 
 
         setAdapter(mCategroyRowAdapter);
-
     }
 
     @Override
@@ -124,14 +131,22 @@ public class MainFragment extends BrowseFragment {
 
     private class ItemViewClickedListener implements OnItemViewClickedListener {
         @Override
-        public void onItemClicked(Presenter.ViewHolder itemViewHolder, Object item, RowPresenter.ViewHolder rowViewHolder, Row row) {
-
+        public void onItemClicked(Presenter.ViewHolder itemViewHolder, Object item,
+                                  RowPresenter.ViewHolder rowViewHolder, Row row) {
+            Tools.showLog(TAG + ": onItemClicked ");
+            Intent intent = new Intent(getActivity(), PlaybackOverlayActivity.class);
+            mSelectedChannel = (Channel) item;
+            intent.putExtra("Channel", mSelectedChannel);
+            Tools.showLog(TAG + mSelectedChannel.toString());
+            startActivity(intent);
         }
     }
 
     private class ItemViewSelectedListener implements OnItemViewSelectedListener {
         @Override
-        public void onItemSelected(Presenter.ViewHolder itemViewHolder, Object item, RowPresenter.ViewHolder rowViewHolder, Row row) {
+        public void onItemSelected(Presenter.ViewHolder itemViewHolder, Object item,
+                                   RowPresenter.ViewHolder rowViewHolder, Row row) {
+
             if (item instanceof Channel) {
                 mBackgroundUri = ((Channel) item).getBgImageURI();
                 startBackgroundTimerTask();

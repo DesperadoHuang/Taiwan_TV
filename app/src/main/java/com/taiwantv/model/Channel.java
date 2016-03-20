@@ -1,12 +1,13 @@
 package com.taiwantv.model;
 
+import java.io.Serializable;
 import java.net.URI;
 import java.net.URISyntaxException;
 
 /**
  * Created by WilsonHuang-PC on 2016/3/8.
  */
-public class Channel {
+public class Channel implements Serializable {
     private String name;
     private String videoUrl;
     private String category;
@@ -90,5 +91,17 @@ public class Channel {
             e.printStackTrace();
             return null;
         }
+    }
+
+    @Override
+    public String toString() {
+        return "Channel{" +
+                "name='" + name + '\'' +
+                ", videoUrl='" + videoUrl + '\'' +
+                ", category='" + category + '\'' +
+                ", cardImageUrl='" + cardImageUrl + '\'' +
+                ", bgImageUrl='" + bgImageUrl + '\'' +
+                ", studio='" + studio + '\'' +
+                '}';
     }
 }
