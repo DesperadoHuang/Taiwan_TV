@@ -11,7 +11,7 @@ import io.vov.vitamio.LibsChecker;
 import io.vov.vitamio.MediaPlayer;
 import io.vov.vitamio.widget.VideoView;
 
-public class PlaybackOverlayActivity extends Activity {
+public class PlaybackOverlayActivity extends Activity implements PlaybackOverlayFragment.OnPlayPauseClickedListener {
     private static final String TAG = "PlaybackOverlayActivity";
     private VideoView vitamioVideoView;
     private Channel mSelectedChannel;
@@ -28,12 +28,17 @@ public class PlaybackOverlayActivity extends Activity {
         mSelectedChannel = (Channel) getIntent().getSerializableExtra("Channel");
         Tools.showLog(TAG + mSelectedChannel.toString());
 
-        vitamioVideoView.setVideoPath(mSelectedChannel.getVideoUrl());
+        vitamioVideoView.setVideoPath(mSelectedChannel.getVideoUrl_1());
         vitamioVideoView.setOnPreparedListener(new MediaPlayer.OnPreparedListener() {
             @Override
             public void onPrepared(MediaPlayer mp) {
                 mp.setPlaybackSpeed(1.0f);
             }
         });
+    }
+
+    @Override
+    public void onFragmentPlayPause(Channel channel, int position, boolean playPause) {
+
     }
 }

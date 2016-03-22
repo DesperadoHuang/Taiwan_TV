@@ -18,7 +18,8 @@ public class VideoDbHelper extends SQLiteOpenHelper {
             "CREATE TABLE " + VideoEntry.TABLE_NAME + " (" +
                     VideoEntry._ID + " INTEGER PRIMARY KEY," +
                     VideoEntry.COLUMN_VIDEO_NAME + " TEXT NOT NULL," +
-                    VideoEntry.COLUMN_VIDEO_URL + " TEXT," +
+                    VideoEntry.COLUMN_VIDEO_URL_1 + " TEXT," +
+                    VideoEntry.COLUMN_VIDEO_URL_2 + " TEXT," +
                     VideoEntry.COLUMN_VIDEO_CATEGORY + " TEXT," +
                     VideoEntry.COLUMN_BG_IMAGE_URL + " TEXT," +
                     VideoEntry.COLUMN_CARD_IMAGE_URL + " TEXT," +
@@ -54,7 +55,8 @@ public class VideoDbHelper extends SQLiteOpenHelper {
     public static final class VideoEntry implements BaseColumns {
         public static final String TABLE_NAME = "video_info";
         public static final String COLUMN_VIDEO_NAME = "video_name";
-        public static final String COLUMN_VIDEO_URL = "video_url";
+        public static final String COLUMN_VIDEO_URL_1 = "video_url_1";
+        public static final String COLUMN_VIDEO_URL_2 = "video_url_2";
         public static final String COLUMN_VIDEO_CATEGORY = "video_category";
         public static final String COLUMN_BG_IMAGE_URL = "bg_image_url";
         public static final String COLUMN_CARD_IMAGE_URL = "card_image_url";

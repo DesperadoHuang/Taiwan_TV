@@ -9,15 +9,17 @@ import java.net.URISyntaxException;
  */
 public class Channel implements Serializable {
     private String name;
-    private String videoUrl;
+    private String videoUrl_1;
+    private String videoUrl_2;
     private String category;
     private String cardImageUrl;
     private String bgImageUrl;
     private String studio;
 
-    public Channel(String name, String videoUrl, String category, String cardImageUrl, String bgImageUrl, String studio) {
+    public Channel(String name, String videoUrl_1, String videoUrl_2, String category, String cardImageUrl, String bgImageUrl, String studio) {
         this.name = name;
-        this.videoUrl = videoUrl;
+        this.videoUrl_1 = videoUrl_1;
+        this.videoUrl_2 = videoUrl_2;
         this.category = category;
         this.cardImageUrl = cardImageUrl;
         this.bgImageUrl = bgImageUrl;
@@ -25,14 +27,6 @@ public class Channel implements Serializable {
     }
 
     public Channel() {
-    }
-
-    public String getStudio() {
-        return studio;
-    }
-
-    public void setStudio(String studio) {
-        this.studio = studio;
     }
 
     public String getName() {
@@ -43,12 +37,20 @@ public class Channel implements Serializable {
         this.name = name;
     }
 
-    public String getVideoUrl() {
-        return videoUrl;
+    public String getVideoUrl_1() {
+        return videoUrl_1;
     }
 
-    public void setVideoUrl(String videoUrl) {
-        this.videoUrl = videoUrl;
+    public void setVideoUrl_1(String videoUrl_1) {
+        this.videoUrl_1 = videoUrl_1;
+    }
+
+    public String getVideoUrl_2() {
+        return videoUrl_2;
+    }
+
+    public void setVideoUrl_2(String videoUrl_2) {
+        this.videoUrl_2 = videoUrl_2;
     }
 
     public String getCategory() {
@@ -75,6 +77,14 @@ public class Channel implements Serializable {
         this.bgImageUrl = bgImageUrl;
     }
 
+    public String getStudio() {
+        return studio;
+    }
+
+    public void setStudio(String studio) {
+        this.studio = studio;
+    }
+
     public URI getBgImageURI() {
         try {
             return new URI(getBgImageUrl());
@@ -97,7 +107,8 @@ public class Channel implements Serializable {
     public String toString() {
         return "Channel{" +
                 "name='" + name + '\'' +
-                ", videoUrl='" + videoUrl + '\'' +
+                ", videoUrl_1='" + videoUrl_1 + '\'' +
+                ", videoUrl_2='" + videoUrl_2 + '\'' +
                 ", category='" + category + '\'' +
                 ", cardImageUrl='" + cardImageUrl + '\'' +
                 ", bgImageUrl='" + bgImageUrl + '\'' +

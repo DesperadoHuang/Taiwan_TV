@@ -21,7 +21,8 @@ public class VideoDAO {
         ContentValues cv = new ContentValues();
         cv.put(VideoDbHelper.VideoEntry.COLUMN_VIDEO_NAME, channel.getName());
         cv.put(VideoDbHelper.VideoEntry.COLUMN_VIDEO_CATEGORY, channel.getCategory());
-        cv.put(VideoDbHelper.VideoEntry.COLUMN_VIDEO_URL, channel.getVideoUrl());
+        cv.put(VideoDbHelper.VideoEntry.COLUMN_VIDEO_URL_1, channel.getVideoUrl_1());
+        cv.put(VideoDbHelper.VideoEntry.COLUMN_VIDEO_URL_2, channel.getVideoUrl_2());
         cv.put(VideoDbHelper.VideoEntry.COLUMN_CARD_IMAGE_URL, channel.getCardImageUrl());
         cv.put(VideoDbHelper.VideoEntry.COLUMN_BG_IMAGE_URL, channel.getBgImageUrl());
         cv.put(VideoDbHelper.VideoEntry.COLUMN_STUDIO, channel.getStudio());

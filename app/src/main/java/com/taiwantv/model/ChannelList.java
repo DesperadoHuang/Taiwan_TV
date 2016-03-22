@@ -18,11 +18,18 @@ public class ChannelList {
             "東森新聞"
     };
 
-    public static final String[] CHANNEL_VIDEO_URL = {
+    public static final String[] CHANNEL_VIDEO_URL_1 = {
             "https://video11-lax.streamup.com/app/vm-ns-stream_aac/chunklist.m3u8",
             "https://video01-fra.streamup.com/app/wjj-eras-channel_aac/chunklist.m3u8",
             "https://video01-fra.streamup.com/app/mirror582sts-channel_aac/chunklist.m3u8",
             "http://ktv029.cdnak.ds.kylintv.net/nlds/kylin/etnews/as/live/etnews_4.m3u8"
+    };
+
+    public static final String[] CHANNEL_VIDEO_URL_2 = {
+            "",
+            "",
+            "",
+            ""
     };
 
     public static final String[] CHANNEL_BG_IMAGE_URL = {
@@ -55,17 +62,18 @@ public class ChannelList {
     public static List<Channel> setupChannels() {
         channelList = new ArrayList<>();
         for (int i = 0; i < CHANNEL_NAME_LIST.length; i++) {
-            channelList.add(buildChannelinfo(CHANNEL_NAME_LIST[i], CHANNEL_VIDEO_URL[i], CHANNEL_CARDIMAGE_URL[i],
-                    CHANNEL_BG_IMAGE_URL[i], CHANNEL_CATEGORY_LIST[i], CHANNEL_STUDIO[i]));
+            channelList.add(buildChannelinfo(CHANNEL_NAME_LIST[i], CHANNEL_VIDEO_URL_1[i], CHANNEL_VIDEO_URL_2[i],
+                    CHANNEL_CARDIMAGE_URL[i], CHANNEL_BG_IMAGE_URL[i], CHANNEL_CATEGORY_LIST[i], CHANNEL_STUDIO[i]));
         }
         return channelList;
     }
 
-    private static Channel buildChannelinfo(String name, String videoUrl, String cardImageUrl,
+    private static Channel buildChannelinfo(String name, String videoUrl_1, String videoUrl_2, String cardImageUrl,
                                             String bgImageUrl, String category, String studio) {
         Channel channel = new Channel();
         channel.setName(name);
-        channel.setVideoUrl(videoUrl);
+        channel.setVideoUrl_1(videoUrl_1);
+        channel.setVideoUrl_2(videoUrl_2);
         channel.setCardImageUrl(cardImageUrl);
         channel.setBgImageUrl(bgImageUrl);
         channel.setCategory(category);
