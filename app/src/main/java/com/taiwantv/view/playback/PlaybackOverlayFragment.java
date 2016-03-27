@@ -13,7 +13,7 @@ import java.util.ArrayList;
 public class PlaybackOverlayFragment extends android.support.v17.leanback.app.PlaybackOverlayFragment {
     private static final String TAG = "PlaybackOverlayFragment";
     private static Context sContext;
-    private ArrayObjectAdapter mRowAdapter;
+    private ArrayObjectAdapter mRowAdapter;             //
     private ArrayObjectAdapter mPrimaryActionsAdapter;
 
     protected OnPlayPauseClickedListener mCallback;

@@ -17,6 +17,7 @@ public class VideoDAO {
         this.db = VideoDbHelper.getDatabase(context);
     }
 
+
     public void insert(Channel channel) {
         ContentValues cv = new ContentValues();
         cv.put(VideoDbHelper.VideoEntry.COLUMN_VIDEO_NAME, channel.getName());
@@ -28,4 +29,7 @@ public class VideoDAO {
         cv.put(VideoDbHelper.VideoEntry.COLUMN_STUDIO, channel.getStudio());
         db.insert(VideoDbHelper.VideoEntry.TABLE_NAME, null, cv);
     }
+
+
+
 }
