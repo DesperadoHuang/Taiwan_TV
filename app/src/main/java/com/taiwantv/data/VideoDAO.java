@@ -2,6 +2,7 @@ package com.taiwantv.data;
 
 import android.content.ContentValues;
 import android.content.Context;
+import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 
 import com.taiwantv.model.Channel;
@@ -17,7 +18,6 @@ public class VideoDAO {
         this.db = VideoDbHelper.getDatabase(context);
     }
 
-
     public void insert(Channel channel) {
         ContentValues cv = new ContentValues();
         cv.put(VideoDbHelper.VideoEntry.COLUMN_VIDEO_NAME, channel.getName());
@@ -30,6 +30,7 @@ public class VideoDAO {
         db.insert(VideoDbHelper.VideoEntry.TABLE_NAME, null, cv);
     }
 
-
-
+    public Cursor query() {
+        return null;
+    }
 }
