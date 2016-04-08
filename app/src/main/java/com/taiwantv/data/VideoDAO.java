@@ -30,7 +30,8 @@ public class VideoDAO {
         db.insert(VideoDbHelper.VideoEntry.TABLE_NAME, null, cv);
     }
 
-    public Cursor query() {
+    public Cursor query(String channelName) {
+
         return null;
     }
 }
